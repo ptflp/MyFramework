@@ -1,4 +1,5 @@
 <?php
+include(ROOT.'/../vendor/autoload.php');
 switch (APP_ENV) {
 	case 'dev':
 		error_reporting(E_ALL & ~E_NOTICE);
