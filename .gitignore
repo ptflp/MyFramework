@@ -1,0 +1,6 @@
+*.*
+/vendor/
+*.lock
+!*.php
+!*.gitignore
+!composer.json
