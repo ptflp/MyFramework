@@ -4,3 +4,5 @@
 !*.php
 !*.gitignore
 !composer.json
+web/adminer.php
+!testData.sql
