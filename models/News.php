@@ -1,4 +1,5 @@
 <?php
+require  ROOT . "/../entities/News.php";
 require_once ROOT . '/../res/Model.php';
 /**
  * News model class
@@ -34,5 +35,15 @@ class News extends Model
 			$newsList[]=$arrItem;
 		}
 		return $newsList;
+	}
+	public static function getNewsListArr()
+	{
+		$db = News::getDoctrine();
+			$query=$db->createQueryBuilder();
+	    $result = $query->select('p')
+            ->from('entities\News', 'p')
+            ->getQuery()
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		return $result;
 	}
 }
