@@ -22,7 +22,7 @@
 			$internalRoute = preg_replace("~$uriPattern~",$path,$uri); // создание внутреннего роута для определения controller/action/parameters
 		} else {
 			if ($uri==null) {
-				$uri='index';
+				$uri='index/index';
 			}
 			$internalRoute = $uri;
 		}
@@ -33,7 +33,6 @@
 		$actionName = 'action' . ucfirst(array_shift($parts)); // Создание имени экшион
 
 		$parameters=$parts; // оставшиеся параметры
-
 		$controllerFile = ROOT . '/../controllers/' . $controllerName . '.php'; // имя файла контроллера
 		if (file_exists($controllerFile)) {
 			include_once($controllerFile);

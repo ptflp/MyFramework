@@ -5,8 +5,9 @@ require_once ROOT.'/../res/Controller.php';
  */
 class IndexController extends Controller
 {
-	public function IndexAction()
+	public function actionIndex($id)
 	{
+		echo $id;
 		echo 'Test';
 	}
 }
