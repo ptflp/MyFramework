@@ -36,4 +36,14 @@ class News extends Model
 		}
 		return $newsList;
 	}
+	public static function getNewsListArr()
+	{
+		$db = News::getDoctrine();
+			$query=$db->createQueryBuilder();
+	    $result = $query->select('p')
+            ->from('entities\News', 'p')
+            ->getQuery()
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		return $result;
+	}
 }
