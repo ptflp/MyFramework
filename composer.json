@@ -1,5 +1,6 @@
 {
     "require": {
-        "leeoniya/dump-r": "^2.1"
+        "leeoniya/dump-r": "^2.1",
+        "mustache/mustache": "^2.12"
     }
 }
