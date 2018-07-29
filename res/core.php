@@ -11,7 +11,6 @@ switch (APP_ENV) {
 		error_reporting(0);
 		break;
 }
-require(ROOT.'/../res/Db.php');
 require(ROOT.'/../res/Router.php');
 $router = new Router();
 $router->run();

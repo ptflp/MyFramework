@@ -8,6 +8,7 @@ include_once ROOT . '/../models/News.php';
  {
  	public function actionIndex()
  	{
+ 		NEWS::getDoctrine();
  		$newsList = array();
  		$newsList = News::getNewsList();
  		include_once ROOT. '/../views/index.html';

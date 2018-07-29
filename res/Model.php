@@ -5,9 +5,9 @@
 class Model
 {
 	public $db;
- 	function __construct()
- 	{
- 		$paramsPath = ROOT . '/../config/db_params.php';
+	public static function getDoctrine()
+	{
+ 		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
 		$params = include($paramsPath);
  		$configuration = Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
 		    $paths = [$params['settings']['paths']],
@@ -16,6 +16,18 @@ class Model
 		// Setup Doctrine
 		// Setup connection parameters
 		// Get the entity manager
-		$this->db = Doctrine\ORM\EntityManager::create($params['db'], $configuration);
- 	}
+		$db = Doctrine\ORM\EntityManager::create($params['db'], $configuration);
+		return $db;
+	}
+	public static function getConnection()
+	{
+		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
+		$params = include($paramsPath);
+		$params = $params['db'];
+
+		$dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
+		$db = new PDO($dsn, $params['user'], $params['password']);
+
+		return $db;
+	}
 }

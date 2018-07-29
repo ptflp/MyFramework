@@ -8,7 +8,7 @@ return [
 	    'driver' => 'pdo_mysql'
 	],
 	'settings' => [
-		'paths' => 'models/',
+		'paths' => 'entities/',
 		'isDevMode' => true
 	]
 ];

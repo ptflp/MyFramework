@@ -9,17 +9,21 @@ class News extends Model
 	{
 		$id = intval ($id);
 		if ($id) {
-			$db = Db::getConnection();
-			$result = $db->query('SELECT * from news WHERE id=' . $id);
-			$result->setFetchMode(PDO::FETCH_ASSOC);
-			$newsItem = $result->fetch();
-
-			return $newsItem;
+			$db = News::getDoctrine();
+ 			$query=$db->createQueryBuilder();
+		    $result = $query->select('p')
+	            ->from('entities\News', 'p')
+	            ->where('p.user_email= :user_email')
+	            ->setParameter('user_email', $user_email)
+	            ->andWhere('p.todolist_id= :todolist_id')
+	            ->setParameter('todolist_id', $todolist_id)
+	            ->getQuery()
+	            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 		}
 	}
 	public static function getNewsList()
 	{
-		$db = Db::getConnection();
+		$db = News::getConnection();
 		$newsList = array();
 		$result = $db->query('SELECT * from news;');
 		while ($row = $result->fetch()) {
