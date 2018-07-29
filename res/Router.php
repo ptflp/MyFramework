@@ -45,6 +45,10 @@
 			} else {
 				//404;
 			}
+		} else {
+			include_once ROOT . '/../controllers/ErrorController.php';
+			$controllerObject = new ErrorController;
+			$controllerObject->actionIndex();
 		}
  	}
  	public function run()

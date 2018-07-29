@@ -5,6 +5,7 @@
 class View
 {
 	public $mustache;
+	public $message;
 	function __construct()
 	{
 		if (class_exists('Mustache_Engine')) {
