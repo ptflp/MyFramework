@@ -23,14 +23,14 @@
  		foreach ($this->routes as $uriPattern => $path) {
  			if (preg_match("~$uriPattern~",$uri) && !$i) {
  				$i++;
- 				$internalRoute = preg_replace("~$uriPattern~",$path,$uri); // создание внутреннего роута для определения controller/action/parametrs
+ 				$internalRoute = preg_replace("~$uriPattern~",$path,$uri); // создание внутреннего роута для определения controller/action/parameters
  				$parts = explode('/',$internalRoute);
  				$controllerName = array_shift($parts) . 'Controller';
  				$controllerName = ucfirst($controllerName); // Создание имени контроллера
 
  				$actionName = 'action' . ucfirst(array_shift($parts)); // Создание имени экшион
 
- 				$parametrs=$parts; // оставшиеся параметры
+ 				$parameters=$parts; // оставшиеся параметры
 
  				$controllerFile = ROOT . '/../controllers/' . $controllerName . '.php'; // имя файла контроллера
 
@@ -43,7 +43,7 @@
 	 				if ($result == false) {
 	 					echo 'wtf';
 	 				} else {
-	 					$controllerObject->$actionName($parametrs); // вызов экшиона с передачей параметров
+	 					call_user_func_array([$controllerObject,$actionName],$parameters); // вызов экшиона с передачей параметров
 	 				}
  				}
  			}

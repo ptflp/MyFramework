@@ -7,9 +7,9 @@
  	public function actionIndex()
  	{
  	}
- 	public function actionView($parametrs)
+ 	public function actionView($category,$id)
  	{
- 		dump_r($parametrs);
- 		return true;
+ 		dump_r($category);
+ 		echo $id;
  	}
  }
