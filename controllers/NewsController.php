@@ -14,4 +14,8 @@
  		echo 'news content';
  		return true;
  	}
+ 	public function actionSport($parametrs)
+ 	{
+ 		dump_r($parametrs);
+ 	}
  }
