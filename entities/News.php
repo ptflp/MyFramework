@@ -20,12 +20,12 @@ class News
     private $title;
 
     /**
-     * @Column(type="string", length=255)
+     * @Column(type="string", length=300)
      */
     private $short_content;
 
     /**
-     * @Column(type="string", length=255)
+     * @Column(type="string", length=900)
      */
     private $content;
     /**
