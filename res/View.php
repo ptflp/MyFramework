@@ -14,6 +14,6 @@ class View
 	}
 	public function render($viewScript)
 	{
-		require($viewScript);
+		include_once ROOT.'/../views/'.$viewScript;
 	}
 }
