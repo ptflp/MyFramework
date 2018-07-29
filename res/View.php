@@ -10,7 +10,10 @@ class View
 	function __construct()
 	{
 		if (class_exists('Mustache_Engine')) {
-		    $this->mustache = new Mustache_Engine;
+			$options =  array('extension' => '.html');
+		    $this->mustache = new Mustache_Engine(array(
+								'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/../views',$options),
+							));
 		}
 	}
 	public function render($viewScript,$param=false)
