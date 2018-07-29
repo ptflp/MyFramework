@@ -19,13 +19,12 @@
  	public function run()
  	{
  		$uri=$this->getUri();
+ 		$i=0;
  		foreach ($this->routes as $uriPattern => $path) {
- 			if (preg_match("~$uriPattern~",$uri)) {
-
+ 			if (preg_match("~$uriPattern~",$uri) && !$i) {
+ 				$i++;
  				$internalRoute = preg_replace("~$uriPattern~",$path,$uri); // создание внутреннего роута для определения controller/action/parametrs
-
- 				$parts = explode('/',$uri);
-
+ 				$parts = explode('/',$internalRoute);
  				$controllerName = array_shift($parts) . 'Controller';
  				$controllerName = ucfirst($controllerName); // Создание имени контроллера
 
@@ -42,7 +41,7 @@
 	 				$result = method_exists($controllerObject,$actionName); // проверка на существование экшиона в конроллере
 
 	 				if ($result == false) {
-	 					break;
+	 					echo 'wtf';
 	 				} else {
 	 					$controllerObject->$actionName($parametrs); // вызов экшиона с передачей параметров
 	 				}

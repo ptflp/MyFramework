@@ -3,6 +3,6 @@
 * Example searching rule regexp '([a-z])' => 'news/view' replace path name
 */
 return Array (
-	'/news\/([a-z]+)\/([0-9]+)/i' => 'news/view/$1/$2',
+	'news\/([a-z]+)\/([0-9]+)' => 'news/view/$1/$2',
 	'news' => 'news/index',
 );

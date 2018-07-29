@@ -6,16 +6,10 @@
  {
  	public function actionIndex()
  	{
- 		echo 'news list';
- 		return true;
  	}
- 	public function actionView()
- 	{
- 		echo 'news content';
- 		return true;
- 	}
- 	public function actionSport($parametrs)
+ 	public function actionView($parametrs)
  	{
  		dump_r($parametrs);
+ 		return true;
  	}
  }
