@@ -1,7 +1,14 @@
 <?php
-return array(
-	'host' => 'sitesdb',
-	'dbname' => 'MVC',
-	'user' => 'root',
-	'password' => 'root'
-);
+return [
+	'db' => [
+		'dbname' => 'MVC',
+	    'user' => 'root',
+	    'password' => 'root',
+	    'host' => 'sitesdb',
+	    'driver' => 'pdo_mysql'
+	],
+	'settings' => [
+		'paths' => 'models/',
+		'isDevMode' => true
+	]
+];

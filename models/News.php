@@ -1,9 +1,9 @@
 <?php
-
+require_once ROOT . '/../res/Model.php';
 /**
  * News model class
  */
-class News
+class News extends Model
 {
 	public static function getNewsItemById($id)
 	{
