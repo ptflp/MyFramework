@@ -25,6 +25,7 @@ class News
 		while ($row = $result->fetch()) {
 			$arrItem['id'] = $row['id'];
 			$arrItem['title'] = $row['title'];
+			$arrItem['author_name'] = $row['author_name'];
 			$arrItem['date'] = $row['date'];
 			$arrItem['short_content'] = $row['short_content'];
 			$newsList[]=$arrItem;

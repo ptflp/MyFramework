@@ -9,7 +9,7 @@ include_once ROOT . '/../models/News.php';
  	{
  		$newsList = array();
  		$newsList = News::getNewsList();
- 		dump_r($newsList);
+ 		include_once ROOT. '/../views/index.html';
  	}
  	public function actionView($id)
  	{
