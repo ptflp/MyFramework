@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+</head>
+<body>
+	<ol>
+	{{#newsList}}
+		<li>
+			<ul>
+				<li>Title: {{title}}</li>
+				<li>Date: {{date}}</li>
+				<li>Author: {{author_name}}</li>
+				<li>{{short_content}}</li>
+				<li><a href="/news/{{id}}">Read more</a></li>
+				<li></li>
+			</ul>
+		</li>
+	{{/newsList}}
+	</ol>
+</body>
+</html>
