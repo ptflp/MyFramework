@@ -1,4 +1,5 @@
 <?php
+include_once ROOT . '/../models/News.php';
 /**
   * NewsController
   */
@@ -6,10 +7,14 @@
  {
  	public function actionIndex()
  	{
+ 		$newsList = array();
+ 		$newsList = News::getNewsList();
+ 		dump_r($newsList);
  	}
- 	public function actionView($category,$id)
+ 	public function actionView($id)
  	{
- 		dump_r($category);
- 		echo $id;
+ 		$newsList = array();
+ 		$newsList = News::getNewsItemById($id);
+ 		dump_r($newsList);
  	}
  }
