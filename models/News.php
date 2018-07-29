@@ -1,4 +1,5 @@
 <?php
+require  ROOT . "/../entities/News.php";
 require_once ROOT . '/../res/Model.php';
 /**
  * News model class
