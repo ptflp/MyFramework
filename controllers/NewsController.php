@@ -12,10 +12,11 @@ include_once ROOT . '/../models/News.php';
  		$newsList = News::getNewsList();
  		include_once ROOT. '/../views/index.html';
  	}
- 	public function actionView($id)
+ 	public function actionView($id,$category=false)
  	{
  		$newsList = array();
  		$newsList = News::getNewsItemById($id);
+ 		dump_r($category);
  		dump_r($newsList);
  	}
  }

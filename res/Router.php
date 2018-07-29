@@ -59,6 +59,10 @@
  			if (preg_match("~$uriPattern~",$uri) && !$i) {
  				$i++;
  				$this->dispatch($uri,$uriPattern,$path);
+ 			} else {
+				include_once ROOT . '/../controllers/ErrorController.php';
+				$controllerObject = new ErrorController;
+				$controllerObject->actionIndex();
  			}
  		}
  		if(!$i) {
