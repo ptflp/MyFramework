@@ -1,9 +1,10 @@
 <?php
+require_once ROOT.'/../res/Controller.php';
 include_once ROOT . '/../models/News.php';
 /**
   * NewsController
   */
- class NewsController
+ class NewsController extends Controller
  {
  	public function actionIndex()
  	{
