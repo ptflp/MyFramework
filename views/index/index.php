@@ -7,5 +7,6 @@
 <body>
 	asfasf
 	<?=$this->message?>
+	<?=$this->param['id']?>
 </body>
 </html>
