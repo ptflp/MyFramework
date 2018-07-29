@@ -43,7 +43,9 @@
 			if ($result == true) {
 				call_user_func_array([$controllerObject,$actionName],$parameters); // вызов экшиона с передачей параметров
 			} else {
-				//404;
+				include_once ROOT . '/../controllers/ErrorController.php';
+				$controllerObject = new ErrorController;
+				$controllerObject->actionIndex();
 			}
 		} else {
 			include_once ROOT . '/../controllers/ErrorController.php';
@@ -59,10 +61,6 @@
  			if (preg_match("~$uriPattern~",$uri) && !$i) {
  				$i++;
  				$this->dispatch($uri,$uriPattern,$path);
- 			} else {
-				include_once ROOT . '/../controllers/ErrorController.php';
-				$controllerObject = new ErrorController;
-				$controllerObject->actionIndex();
  			}
  		}
  		if(!$i) {
