@@ -13,13 +13,12 @@ class News extends Model
  			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
 	            ->from('entities\News', 'p')
-	            ->where('p.user_email= :user_email')
-	            ->setParameter('user_email', $user_email)
-	            ->andWhere('p.todolist_id= :todolist_id')
-	            ->setParameter('todolist_id', $todolist_id)
+	            ->where('p.id= :id')
+	            ->setParameter('id', $id)
 	            ->getQuery()
 	            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 		}
+		return $result;
 	}
 	public static function getNewsList()
 	{
