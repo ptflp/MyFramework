@@ -35,10 +35,6 @@ use models\News;
  	}
  	public function actionIndex()
  	{
- 		asfasfas
- 		foreach ($f as $key => $value) {
- 			echo $key;
- 		}
 		try {
 			$client = new Predis\Client([
 				    "scheme" => "tcp",
