@@ -1,6 +1,7 @@
 <?php
 namespace models;
 use res\Model as Model;
+use Predis\Client;
 /**
  * News model class
  */
@@ -38,12 +39,29 @@ class News extends Model
 	}
 	public static function getNewsListArr()
 	{
-		$db = News::getDoctrine();
-			$query=$db->createQueryBuilder();
-	    $result = $query->select('p')
-            ->from('entities\News', 'p')
-            ->getQuery()
-            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		try {
+			$client = new Client([
+				    "scheme" => "tcp",
+				    "host" => "redis",
+				    "port" => 6379
+			]);
+
+		}
+		catch (Exception $e) {
+			die($e->getMessage());
+		}
+		$response = $client->get('newsList');
+		if ($response) {
+			$result=json_decode($response);
+		} else {
+			$db = News::getDoctrine();
+				$query=$db->createQueryBuilder();
+		    $result = $query->select('p')
+	            ->from('entities\News', 'p')
+	            ->getQuery()
+	            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		 	$client->set('newsList', json_encode($result));
+		}
 		return $result;
 	}
 }
