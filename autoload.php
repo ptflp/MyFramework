@@ -26,7 +26,6 @@ class Autoloader
     {
       while (FAlSE !== ($dir = readdir($handle)) && $flag)
       {
-        echo $path;
         if (strpos($dir, '.') === FALSE && !strpos($path,'vendor') && !strpos($path,'web') && !strpos($path,'config') && !strpos($path,'views'))
         {
           $path2 = $path .'/' . $dir;
