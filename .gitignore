@@ -7,3 +7,5 @@
 !composer.json
 web/adminer.php
 !testData.sql
+res/Log/Log.html
+web/adminer

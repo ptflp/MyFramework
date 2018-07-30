@@ -1,5 +1,7 @@
 <?php
-include(ROOT.'/../vendor/autoload.php');
+include dirname(__FILE__).'/vendor/autoload.php';
+include dirname(__FILE__).'/autoload.php';
+use res\Router;
 switch (APP_ENV) {
 	case 'dev':
 		error_reporting(E_ALL & ~E_NOTICE);
@@ -11,6 +13,5 @@ switch (APP_ENV) {
 		error_reporting(0);
 		break;
 }
-require(ROOT.'/../res/Router.php');
 $router = new Router();
 $router->run();

@@ -1,13 +1,15 @@
 <?php
-require_once ROOT . '/../res/View.php';
 /**
  * Controller
  */
-abstract class Controller
+namespace res;
 {
-	public $view;
-	function __construct()
+	abstract class Controller
 	{
-		$this->view = new View();
+		public $view;
+		function __construct()
+		{
+			$this->view = new View();
+		}
 	}
 }
