@@ -1,7 +1,6 @@
 <?php
 use res\Controller;
 use models\News;
-use Tracy\Debugger;
 
 /**
   * NewsController
@@ -36,29 +35,10 @@ use Tracy\Debugger;
  	}
  	public function actionIndex()
  	{
-		try {
-			$client = new Predis\Client([
-				    "scheme" => "tcp",
-				    "host" => "redis",
-				    "port" => 6379
-			]);
- 			$response = $client->get('newsList');
- 			if ($response) {
- 				$newsList=json_decode($response);
- 			} else {
-		 		$newsList = array();
-		 		$newsList = News::getNewsListArr();
-		 		$client->set('newsList', json_encode($newsList));
- 			}
-
-		}
-		catch (Exception $e) {
-			die($e->getMessage());
-		}
+ 		$newsList = News::getNewsListArr();
 		$content['title']='moyTitle';
 		$content['email']='email';
 		$content['newsList']=$newsList;
-		Debugger::enable(Debugger::DEVELOPMENT);
  		echo $this->view->muRender('news/index',$content);
  	}
  }
