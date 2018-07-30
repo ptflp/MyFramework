@@ -1,6 +1,6 @@
 <?php
-include(ROOT.'/../vendor/autoload.php');
-include(ROOT.'/../autoload.php');
+include dirname(__FILE__).'/vendor/autoload.php';
+include dirname(__FILE__).'/autoload.php';
 use res\Router;
 switch (APP_ENV) {
 	case 'dev':
