@@ -1,6 +1,6 @@
 <?php
-require_once ROOT.'/../res/Controller.php';
-include_once ROOT . '/../models/News.php';
+use res\Controller;
+use models\News;
 /**
   * NewsController
   */
@@ -14,10 +14,10 @@ include_once ROOT . '/../models/News.php';
 				    "host" => "redis",
 				    "port" => 6379
 			]);
-	 		// $newsList = NEWS::getNewsList();
- 			// $client->set('newsList', json_encode($newsList));
- 			$response = $client->get('newsList');
- 			$newsList=json_decode($response);
+	 		$newsList = NEWS::getNewsList();
+ 			$client->set('newsList', json_encode($newsList));
+ 			// $response = $client->get('newsList');
+ 			// $newsList=json_decode($response);
 		}
 		catch (Exception $e) {
 			die($e->getMessage());

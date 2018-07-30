@@ -2,6 +2,10 @@
 /**
  * Doctrine Model
  */
+namespace res;
+use \PDO;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 class Model
 {
 	public $db;
@@ -9,14 +13,14 @@ class Model
 	{
  		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
 		$params = include($paramsPath);
- 		$configuration = Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
+ 		$configuration = Setup::createAnnotationMetadataConfiguration(
 		    $paths = [$params['settings']['paths']],
 		    $isDevMode = $params['settings']['isDevMode']
 		);
 		// Setup Doctrine
 		// Setup connection parameters
 		// Get the entity manager
-		$db = Doctrine\ORM\EntityManager::create($params['db'], $configuration);
+		$db = EntityManager::create($params['db'], $configuration);
 		return $db;
 	}
 	public static function getConnection()

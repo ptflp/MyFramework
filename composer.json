@@ -3,6 +3,7 @@
         "leeoniya/dump-r": "^2.1",
         "mustache/mustache": "^2.12",
         "doctrine/orm": "^2.6",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "dg/adminer-custom": "^1.15"
     }
 }

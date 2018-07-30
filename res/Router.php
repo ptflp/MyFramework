@@ -2,6 +2,7 @@
 /**
   * Class Router
   */
+namespace res;
  class Router
  {
  	private $routes;

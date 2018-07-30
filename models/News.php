@@ -1,6 +1,6 @@
 <?php
-require  ROOT . "/../entities/News.php";
-require_once ROOT . '/../res/Model.php';
+namespace models;
+use res\Model as Model;
 /**
  * News model class
  */

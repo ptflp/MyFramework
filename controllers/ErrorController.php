@@ -1,5 +1,5 @@
 <?php
-require_once ROOT.'/../res/Controller.php';
+use app\Controller;
 /**
  * Error
  */
