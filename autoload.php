@@ -47,11 +47,16 @@ class Autoloader
   private static function StPutFile($data)
   {
     $dir = dirname(__FILE__) .'/res/Log/Log.html';
-    $file = fopen($dir, 'a');
-    flock($file, LOCK_EX);
-    fwrite($file, ('║' .$data .'=>' .date('d.m.Y H:i:s') .'<br/>║<br/>' .PHP_EOL));
-    flock($file, LOCK_UN);
-    fclose ($file);
+    if (file_exists($dir)) {
+      $file = fopen($dir, 'a');
+      flock($file, LOCK_EX);
+      fwrite($file, ('║' .$data .'=>' .date('d.m.Y H:i:s') .'<br/>║<br/>' .PHP_EOL));
+      flock($file, LOCK_UN);
+      fclose ($file);
+    } else {
+      mkdir(dirname(__FILE__) .'/res/Log/');
+      touch($dir);
+    }
   }
 }
 spl_autoload_register('Autoloader::autoload');

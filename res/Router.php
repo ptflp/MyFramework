@@ -3,7 +3,6 @@
   * Class Router
   */
 namespace res;
-use Tracy\Debugger;
  class Router
  {
  	private $routes;
@@ -11,10 +10,6 @@ use Tracy\Debugger;
  	{
  		$routesPath = ROOT.'/../config/routes.php'; // get aliases
  		$this->routes = include($routesPath);
-		if (APP_ENV == 'dev') {
-			Debugger::$strictMode = TRUE;
-			Debugger::enable(Debugger::DEVELOPMENT);
-		}
  	}
  	private function getUri() // get URL address
  	{
