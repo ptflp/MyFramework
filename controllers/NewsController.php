@@ -1,7 +1,6 @@
 <?php
 use res\Controller;
 use models\News;
-use Tracy\Debugger;
 
 /**
   * NewsController
@@ -36,6 +35,10 @@ use Tracy\Debugger;
  	}
  	public function actionIndex()
  	{
+ 		asfasfas
+ 		foreach ($f as $key => $value) {
+ 			echo $key;
+ 		}
 		try {
 			$client = new Predis\Client([
 				    "scheme" => "tcp",
@@ -58,7 +61,6 @@ use Tracy\Debugger;
 		$content['title']='moyTitle';
 		$content['email']='email';
 		$content['newsList']=$newsList;
-		Debugger::enable(Debugger::DEVELOPMENT);
  		echo $this->view->muRender('news/index',$content);
  	}
  }
