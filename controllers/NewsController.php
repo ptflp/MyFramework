@@ -6,7 +6,7 @@ use models\News;
   */
  class NewsController extends Controller
  {
- 	public function actionIndex()
+ 	public function actionList()
  	{
 		try {
 			$client = new Predis\Client([
@@ -30,16 +30,16 @@ use models\News;
  	{
  		$newsList = array();
  		$newsList = News::getNewsItemById($id);
- 		dump_r($category);
- 		dump_r($newsList);
+ 		$content['newsList']=$newsList;
+ 		echo $this->view->muRender('news/detail',$content);
  	}
- 	public function actionList()
+ 	public function actionIndex()
  	{
  		$newsList = array();
  		$newsList = News::getNewsListArr();
-		$index['title']='moyTitle';
-		$index['email']='email';
-		$index['newsList']=$newsList;
- 		echo $this->view->muRender('index',$index);
+		$content['title']='moyTitle';
+		$content['email']='email';
+		$content['newsList']=$newsList;
+ 		echo $this->view->muRender('news/index',$content);
  	}
  }
