@@ -24,7 +24,6 @@ use models\News;
 		}
 		// $this->view->render('index.php',['id'=>$id,'newsList'=>$newsList]);
 		dump_r($newsList);
- 		// include_once ROOT. '/../views/index.html';
  	}
  	public function actionView($id,$category=false)
  	{
