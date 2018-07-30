@@ -1,5 +1,5 @@
 <?php
-use app\Controller;
+use res\Controller;
 /**
  * Error
  */

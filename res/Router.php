@@ -44,14 +44,24 @@ namespace res;
 			if ($result == true) {
 				call_user_func_array([$controllerObject,$actionName],$parameters); // вызов экшиона с передачей параметров
 			} else {
-				include_once ROOT . '/../controllers/ErrorController.php';
-				$controllerObject = new ErrorController;
-				$controllerObject->actionIndex();
+				$this->notFound();
 			}
 		} else {
-			include_once ROOT . '/../controllers/ErrorController.php';
-			$controllerObject = new ErrorController;
-			$controllerObject->actionIndex();
+			$this->notFound();
+		}
+ 	}
+ 	public function notFound()
+ 	{
+ 		$controllerName = 'ErrorController';
+		$controllerFile=ROOT . '/../controllers/ErrorController.php';
+		if (file_exists($controllerFile)) {
+			include_once($controllerFile);
+			$controllerObject = new $controllerName;
+			$parameters=[];
+			$result = method_exists($controllerObject,'actionIndex'); // проверка на существование экшиона в конроллере
+			if ($result == true) {
+				call_user_func_array([$controllerObject,'actionIndex'],$parameters); // вызов экшиона с передачей параметров
+			}
 		}
  	}
  	public function run()
