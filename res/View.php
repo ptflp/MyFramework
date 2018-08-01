@@ -3,8 +3,10 @@
  * View
  */
 namespace res;
+
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
+
 {
 	class View
 	{
@@ -27,12 +29,28 @@ use Mustache_Loader_FilesystemLoader;
 			$this->param=$param;
 			include_once ROOT.'/../views/'.$viewScript;
 		}
-		public function muRender($template,$data)
+		/*
+		* If $param['render']='page' renders page without layouts
+		 */
+		public function muRender($template,$data,$param=false)
 		{
-	 		$view=$this->mustache->loadTemplate($template);
-	 		$content['content']=$view->render($data);
-	 		$layout=$this->mustache->loadTemplate('layouts/main');
-	 		return $layout->render($content);
+			switch ($param['render']) {
+				case 'page':
+			 		$page = $this->muRenderPart($template,$data);
+
+					break;
+
+				default:
+			 		$data['content'] = $this->muRenderPart($template,$data);
+			 		$page = $this->muRenderPart('layouts/'.$this->layout,$data);
+					break;
+			}
+			return $page;
+		}
+		public function muRenderPart($template,$data)
+		{
+			 $view=$this->mustache->loadTemplate($template);
+			 return $view->render($data);
 		}
 	}
 }
