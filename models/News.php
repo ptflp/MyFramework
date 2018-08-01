@@ -1,7 +1,9 @@
 <?php
 namespace models;
+
 use res\Model as Model;
 use Predis\Client;
+
 /**
  * News model class
  */

@@ -1,11 +1,13 @@
 <?php
-/**
- * Doctrine Model
- */
 namespace res;
+
 use \PDO;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+
+/**
+ * Doctrine Model
+ */
 class Model
 {
 	public $db;

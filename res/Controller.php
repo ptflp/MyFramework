@@ -1,8 +1,9 @@
 <?php
+namespace res;
+
 /**
  * Controller
  */
-namespace res;
 {
 	abstract class Controller
 	{

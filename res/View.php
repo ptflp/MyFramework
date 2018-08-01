@@ -1,11 +1,12 @@
 <?php
-/**
- * View
- */
 namespace res;
 
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
+
+/**
+ * View
+ */
 
 {
 	class View

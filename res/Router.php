@@ -1,8 +1,9 @@
 <?php
+namespace res;
+
 /**
   * Class Router
   */
-namespace res;
  class Router
  {
  	private $routes;
