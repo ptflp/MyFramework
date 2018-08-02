@@ -10,11 +10,17 @@ use Predis\Client;
  */
 class News extends Model
 {
+	public $db;
+
+	public function __construct()
+	{
+		$this->$db = News::getDoctrine();
+	}
 	public static function getNewsItemById($id)
 	{
 		$id = intval ($id);
 		if ($id) {
-			$db = News::getDoctrine();
+			$db = $this->db;
  			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
 	            ->from('App\Entities\NewsOrm', 'p')
@@ -28,7 +34,7 @@ class News extends Model
 
 	public static function getNewsList()
 	{
-		$db = News::getConnection();
+		$db = $this->db;
 		$newsList = array();
 		$result = $db->query('SELECT * from news;');
 		while ($row = $result->fetch()) {
@@ -44,29 +50,29 @@ class News extends Model
 
 	public static function getNewsListArr()
 	{
-		// try {
-		// 	$client = new Client([
-		// 		    "scheme" => "tcp",
-		// 		    "host" => "redis",
-		// 		    "port" => 6379
-		// 	]);
+		try {
+			$client = new Client([
+				    "scheme" => "tcp",
+				    "host" => "redis",
+				    "port" => 6379
+			]);
 
-		// 	$response = $client->get('newsList');
-		// }
-		// catch (Exception $e) {
-		// 	die($e->getMessage());
-		// }
+			$response = $client->get('newsList');
+		}
+		catch (Exception $e) {
+			die($e->getMessage());
+		}
 		$response=false;
 		if ($response) {
 			$result=json_decode($response);
 		} else {
-			$db = News::getDoctrine();
+			$db = $this->db;
 				$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
 	            ->from('App\Entities\NewsOrm', 'p')
 	            ->getQuery()
 	            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
-		 	// $client->set('newsList', json_encode($result));
+		 	$client->set('newsList', json_encode($result));
 		}
 		return $result;
 	}
