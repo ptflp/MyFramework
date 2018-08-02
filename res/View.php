@@ -14,6 +14,7 @@ class View
 	public $message;
 	public $param=[];
 	public $layout;
+
 	function __construct()
 	{
 		if (class_exists('Mustache_Engine')) {
@@ -24,11 +25,13 @@ class View
 		}
 		$this->layout='main';
 	}
+
 	public function render($viewScript,$param=false)
 	{
 		$this->param=$param;
 		include_once ROOT.'/../views/'.$viewScript;
 	}
+
 	/*
 	* If $param['render']='page' renders page without layouts
 	 */
@@ -47,6 +50,7 @@ class View
 		}
 		return $page;
 	}
+
 	public function muRenderPart($template,$data)
 	{
 		 $view=$this->mustache->loadTemplate($template);
