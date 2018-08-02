@@ -17,7 +17,7 @@ class News extends Model
 			$db = News::getDoctrine();
  			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
-	            ->from('entities\NewsOrm', 'p')
+	            ->from('App\Entities\NewsOrm', 'p')
 	            ->where('p.id= :id')
 	            ->setParameter('id', $id)
 	            ->getQuery()
