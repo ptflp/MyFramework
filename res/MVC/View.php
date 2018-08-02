@@ -11,7 +11,7 @@ use Mustache_Loader_FilesystemLoader;
 class View
 {
 	private $mustache;
-	public $param=[];
+	public $param;
 	public $layout;
 
 	function __construct()
@@ -36,6 +36,9 @@ class View
 	 */
 	public function muRender($template,$data,$param=false)
 	{
+		if(!$param) {
+			$param = $this->param;
+		}
 		switch ($param['render']) {
 			case 'part':
 		 		$page = $this->muRenderPart($template,$data);

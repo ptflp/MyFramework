@@ -12,7 +12,8 @@ use App\Models\News;
 	function __construct()
 	{
 		parent::__construct();
-		$this->view->layout = 'text';
+		$this->view->layout = 'text'; // change layout for this controller
+		$this->view->param = ['render'=>'part']; // change render type for this controller
 	}*/
 
  	public function actionList()
