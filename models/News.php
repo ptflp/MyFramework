@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Resource\Model;
+use App\Resource\MVC\Model;
 use Predis\Client;
 
 /**

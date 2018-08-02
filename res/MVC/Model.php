@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Resource;
+namespace App\Resource\MVC;
 
 use \PDO;
 use Doctrine\ORM\Tools\Setup;
@@ -15,7 +15,7 @@ class Model
 
 	public static function getDoctrine()
 	{
- 		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
+ 		$paramsPath = dirname(__FILE__).'/../../config/db_params.php';
 		$params = include($paramsPath);
  		$configuration = Setup::createAnnotationMetadataConfiguration(
 		    $paths = [$params['settings']['paths']],
@@ -30,7 +30,7 @@ class Model
 
 	public static function getConnection()
 	{
-		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
+		$paramsPath = dirname(__FILE__).'/../../config/db_params.php';
 		$params = include($paramsPath);
 		$params = $params['db'];
 

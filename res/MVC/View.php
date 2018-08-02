@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Resource;
+namespace App\Resource\MVC;
 
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;
@@ -19,7 +19,7 @@ class View
 		if (class_exists('Mustache_Engine')) {
 			$options =  array('extension' => '.html');
 			$this->mustache = new Mustache_Engine(array(
-									'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/../views',$options),
+									'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/../../views',$options),
 								));
 		}
 		$this->layout='main';

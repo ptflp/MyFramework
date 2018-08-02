@@ -1,6 +1,6 @@
 <?php
 
-use App\Resource\Controller;
+use App\Resource\MVC\Controller;
 use App\Models\News;
 
 /**
