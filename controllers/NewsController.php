@@ -40,9 +40,7 @@ use App\Models\News;
  		$newsList = array();
  		$db = News::getDoctrine();
  		$newsList = News::getNewsItemById($id,$db);
- 		if (empty($newsList)) {
- 			$this->notFound();
- 		}
+ 		$this->isExist($newsList);
  		$content['newsList']=$newsList;
  		echo $this->view->muRender('news/detail',$content);
  	}
