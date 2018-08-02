@@ -17,7 +17,7 @@ class News extends Model
 			$db = News::getDoctrine();
  			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
-	            ->from('entities\News', 'p')
+	            ->from('entities\NewsOrm', 'p')
 	            ->where('p.id= :id')
 	            ->setParameter('id', $id)
 	            ->getQuery()
@@ -44,28 +44,29 @@ class News extends Model
 
 	public static function getNewsListArr()
 	{
-		try {
-			$client = new Client([
-				    "scheme" => "tcp",
-				    "host" => "redis",
-				    "port" => 6379
-			]);
+		// try {
+		// 	$client = new Client([
+		// 		    "scheme" => "tcp",
+		// 		    "host" => "redis",
+		// 		    "port" => 6379
+		// 	]);
 
-		}
-		catch (Exception $e) {
-			die($e->getMessage());
-		}
-		$response = $client->get('newsList');
+		// 	$response = $client->get('newsList');
+		// }
+		// catch (Exception $e) {
+		// 	die($e->getMessage());
+		// }
+		$response=false;
 		if ($response) {
 			$result=json_decode($response);
 		} else {
 			$db = News::getDoctrine();
 				$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
-	            ->from('entities\News', 'p')
+	            ->from('App\Entities\NewsOrm', 'p')
 	            ->getQuery()
 	            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
-		 	$client->set('newsList', json_encode($result));
+		 	// $client->set('newsList', json_encode($result));
 		}
 		return $result;
 	}
