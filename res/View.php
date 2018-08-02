@@ -11,11 +11,10 @@ use Mustache_Loader_FilesystemLoader;
 class View
 {
 	private $mustache;
-	public $message;
 	public $param=[];
 	public $layout;
 
-	function __construct($layout)
+	function __construct()
 	{
 		if (class_exists('Mustache_Engine')) {
 			$options =  array('extension' => '.html');
@@ -23,7 +22,7 @@ class View
 									'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/../views',$options),
 								));
 		}
-		$this->layout=$layout;
+		$this->layout='main';
 	}
 
 	public function render($viewScript,$param=false)
@@ -38,7 +37,7 @@ class View
 	public function muRender($template,$data,$param=false)
 	{
 		switch ($param['render']) {
-			case 'page':
+			case 'part':
 		 		$page = $this->muRenderPart($template,$data);
 
 				break;

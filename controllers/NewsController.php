@@ -8,6 +8,12 @@ use App\Models\News;
   */
  class NewsController extends Controller
  {
+	function __construct()
+	{
+		parent::__construct();
+		$this->view->layout = 'text';
+	}
+
  	public function actionList()
  	{
 		try {
@@ -31,7 +37,8 @@ use App\Models\News;
  	public function actionView($id,$category=false)
  	{
  		$newsList = array();
- 		$newsList = News::getNewsItemById($id);
+ 		$db = News::getDoctrine();
+ 		$newsList = News::getNewsItemById($id,$db);
  		$content['newsList']=$newsList;
  		echo $this->view->muRender('news/detail',$content);
  	}
