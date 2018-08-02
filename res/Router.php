@@ -8,17 +8,20 @@ namespace App\Resource;
  class Router
  {
  	private $routes;
+
  	function __construct()
  	{
  		$routesPath = ROOT.'/../config/routes.php'; // get aliases
  		$this->routes = include($routesPath);
  	}
+
  	private function getUri() // get URL address
  	{
  		if (!empty($_GET['__route'])) {
  			return $uri = trim ($_GET['__route'],'/');
  		}
  	}
+
  	public function dispatch($uri,$uriPattern=false,$path=false)
  	{
 		if ($uriPattern && $path) {
@@ -52,6 +55,7 @@ namespace App\Resource;
 			$this->notFound();
 		}
  	}
+
  	public function notFound()
  	{
  		$controllerName = 'ErrorController';
@@ -66,6 +70,7 @@ namespace App\Resource;
 			}
 		}
  	}
+
  	public function run()
  	{
  		$uri=$this->getUri();
