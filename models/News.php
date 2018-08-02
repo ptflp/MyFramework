@@ -16,11 +16,14 @@ class News extends Model
 	{
 		$this->$db = News::getDoctrine();
 	}
-	public static function getNewsItemById($id)
+	public static function getNewsItemById($id,$db=false)
 	{
+		$static = !(isset($this) && get_class($this) == __CLASS__);
+		if (!$static) {
+			$db = $this->db;
+		}
 		$id = intval ($id);
 		if ($id) {
-			$db = $this->db;
  			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
 	            ->from('App\Entities\NewsOrm', 'p')
