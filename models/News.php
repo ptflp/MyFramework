@@ -32,9 +32,12 @@ class News extends Model
 		return $result;
 	}
 
-	public static function getNewsList()
+	public static function getNewsList($db=false)
 	{
-		$db = $this->db;
+		$static = !(isset($this) && get_class($this) == __CLASS__);
+		if (!$static) {
+			$db = $this->db;
+		}
 		$newsList = array();
 		$result = $db->query('SELECT * from news;');
 		while ($row = $result->fetch()) {
@@ -48,8 +51,12 @@ class News extends Model
 		return $newsList;
 	}
 
-	public static function getNewsListArr()
+	public static function getNewsListArr($db=false)
 	{
+		$static = !(isset($this) && get_class($this) == __CLASS__);
+		if (!$static) {
+			$db = $this->db;
+		}
 		try {
 			$client = new Client([
 				    "scheme" => "tcp",
@@ -66,8 +73,7 @@ class News extends Model
 		if ($response) {
 			$result=json_decode($response);
 		} else {
-			$db = $this->db;
-				$query=$db->createQueryBuilder();
+			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
 	            ->from('App\Entities\NewsOrm', 'p')
 	            ->getQuery()

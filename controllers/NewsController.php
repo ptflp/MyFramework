@@ -38,7 +38,8 @@ use App\Models\News;
 
  	public function actionIndex()
  	{
- 		$newsList = News::getNewsListArr();
+ 		$db = News::getDoctrine();
+ 		$newsList = News::getNewsListArr($db);
 		$content['title']='moyTitle';
 		$content['email']='email';
 		$content['newsList']=$newsList;
