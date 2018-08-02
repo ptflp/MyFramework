@@ -26,5 +26,6 @@ class Controller
 		header("Status: 404 Not Found");
 		$content['message'] = "404 Not Found";
  		echo $this->view->muRender('404',$content);
+ 		die();
 	}
 }
