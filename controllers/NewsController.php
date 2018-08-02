@@ -1,6 +1,7 @@
 <?php
-use res\Controller;
-use models\News;
+
+use App\Resource\Controller;
+use App\Models\News;
 
 /**
   * NewsController
@@ -26,6 +27,7 @@ use models\News;
 		// $this->view->render('index.php',['id'=>$id,'newsList'=>$newsList]);
 		dump_r($newsList);
  	}
+
  	public function actionView($id,$category=false)
  	{
  		$newsList = array();
@@ -33,6 +35,7 @@ use models\News;
  		$content['newsList']=$newsList;
  		echo $this->view->muRender('news/detail',$content);
  	}
+
  	public function actionIndex()
  	{
  		$newsList = News::getNewsListArr();
@@ -41,4 +44,5 @@ use models\News;
 		$content['newsList']=$newsList;
  		echo $this->view->muRender('news/index',$content);
  	}
+
  }

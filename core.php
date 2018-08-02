@@ -14,7 +14,7 @@ switch (APP_ENV) {
 		error_reporting(0);
 		break;
 }
-include dirname(__FILE__).'/autoload.php';
-use res\Router;
+// include dirname(__FILE__).'/autoload.php';
+use App\Resource\Router;
 $router = new Router();
 $router->run();

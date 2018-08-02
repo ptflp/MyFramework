@@ -1,5 +1,6 @@
 <?php
-namespace res;
+
+namespace App\Resource;
 
 /**
   * Class Router

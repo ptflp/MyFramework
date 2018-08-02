@@ -1,7 +1,8 @@
 <?php
-namespace models;
 
-use res\Model as Model;
+namespace App\Models;
+
+use App\Resource\Model;
 use Predis\Client;
 
 /**
@@ -24,6 +25,7 @@ class News extends Model
 		}
 		return $result;
 	}
+
 	public static function getNewsList()
 	{
 		$db = News::getConnection();
@@ -39,6 +41,7 @@ class News extends Model
 		}
 		return $newsList;
 	}
+
 	public static function getNewsListArr()
 	{
 		try {

@@ -1,5 +1,6 @@
 <?php
-namespace res;
+
+namespace App\Resource;
 
 use \PDO;
 use Doctrine\ORM\Tools\Setup;
@@ -11,6 +12,7 @@ use Doctrine\ORM\EntityManager;
 class Model
 {
 	public $db;
+
 	public static function getDoctrine()
 	{
  		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
@@ -25,6 +27,7 @@ class Model
 		$db = EntityManager::create($params['db'], $configuration);
 		return $db;
 	}
+
 	public static function getConnection()
 	{
 		$paramsPath = dirname(__FILE__).'/../config/db_params.php';

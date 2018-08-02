@@ -1,5 +1,6 @@
 <?php
-use res\Controller;
+
+use App\Resource\Controller;
 
 /**
  * Error
