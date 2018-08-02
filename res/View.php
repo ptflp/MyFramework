@@ -15,7 +15,7 @@ class View
 	public $param=[];
 	public $layout;
 
-	function __construct()
+	function __construct($layout)
 	{
 		if (class_exists('Mustache_Engine')) {
 			$options =  array('extension' => '.html');
@@ -23,7 +23,7 @@ class View
 									'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/../views',$options),
 								));
 		}
-		$this->layout='main';
+		$this->layout=$layout;
 	}
 
 	public function render($viewScript,$param=false)
