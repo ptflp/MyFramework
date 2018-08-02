@@ -8,11 +8,12 @@ use App\Models\News;
   */
  class NewsController extends Controller
  {
+ 	/* Layouts changing
 	function __construct()
 	{
 		parent::__construct();
 		$this->view->layout = 'text';
-	}
+	}*/
 
  	public function actionList()
  	{
