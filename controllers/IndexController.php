@@ -1,5 +1,7 @@
 <?php
-use res\Controller;
+
+use App\MVC\Controller;
+
 /**
  * Controller
  */

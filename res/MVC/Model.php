@@ -1,18 +1,22 @@
 <?php
-/**
- * Doctrine Model
- */
-namespace res;
+
+namespace App\MVC;
+
 use \PDO;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use App\Resource\Component;
+
+/**
+ * Doctrine Model
+ */
 class Model
 {
 	public $db;
+
 	public static function getDoctrine()
 	{
- 		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
-		$params = include($paramsPath);
+		$params = Component::getParams();
  		$configuration = Setup::createAnnotationMetadataConfiguration(
 		    $paths = [$params['settings']['paths']],
 		    $isDevMode = $params['settings']['isDevMode']
@@ -23,10 +27,10 @@ class Model
 		$db = EntityManager::create($params['db'], $configuration);
 		return $db;
 	}
+
 	public static function getConnection()
 	{
-		$paramsPath = dirname(__FILE__).'/../config/db_params.php';
-		$params = include($paramsPath);
+		$params = Component::getParams();
 		$params = $params['db'];
 
 		$dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";

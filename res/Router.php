@@ -1,22 +1,27 @@
 <?php
+
+namespace App\Resource;
+
 /**
   * Class Router
   */
-namespace res;
  class Router
  {
  	private $routes;
+
  	function __construct()
  	{
- 		$routesPath = ROOT.'/../config/routes.php'; // get aliases
+ 		$routesPath = dirname(__FILE__) . '/../config/routes.php'; // get aliases
  		$this->routes = include($routesPath);
  	}
+
  	private function getUri() // get URL address
  	{
  		if (!empty($_GET['__route'])) {
  			return $uri = trim ($_GET['__route'],'/');
  		}
  	}
+
  	public function dispatch($uri,$uriPattern=false,$path=false)
  	{
 		if ($uriPattern && $path) {
@@ -34,10 +39,9 @@ namespace res;
 		$actionName = 'action' . ucfirst(array_shift($parts)); // Создание имени экшион
 
 		$parameters=$parts; // оставшиеся параметры
-		$controllerFile = ROOT . '/../controllers/' . $controllerName . '.php'; // имя файла контроллера
+		$controllerFile = dirname(__FILE__) . '/../controllers/' . $controllerName . '.php'; // имя файла контроллера
 		if (file_exists($controllerFile)) {
 			include_once($controllerFile);
-
 			$controllerObject = new $controllerName;
 			$result = method_exists($controllerObject,$actionName); // проверка на существование экшиона в конроллере
 
@@ -50,20 +54,21 @@ namespace res;
 			$this->notFound();
 		}
  	}
+
  	public function notFound()
  	{
- 		$controllerName = 'ErrorController';
-		$controllerFile=ROOT . '/../controllers/ErrorController.php';
+ 		$controllerName = 'Controller';
+		$controllerFile = dirname(__FILE__) . '/'.$controllerName.'.php';
 		if (file_exists($controllerFile)) {
 			include_once($controllerFile);
-			$controllerObject = new $controllerName;
-			$parameters=[];
-			$result = method_exists($controllerObject,'actionIndex'); // проверка на существование экшиона в конроллере
+			$controllerObject = new Controller;
+			$result = method_exists($controllerObject,'notFound'); // проверка на существование экшиона в конроллере
 			if ($result == true) {
-				call_user_func_array([$controllerObject,'actionIndex'],$parameters); // вызов экшиона с передачей параметров
+				call_user_func_array([$controllerObject,'notFound'],[]); // вызов экшиона с передачей параметров
 			}
 		}
  	}
+
  	public function run()
  	{
  		$uri=$this->getUri();

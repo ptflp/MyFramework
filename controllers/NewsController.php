@@ -1,12 +1,21 @@
 <?php
-use res\Controller;
-use models\News;
+
+use App\MVC\Controller;
+use App\Models\News;
 
 /**
   * NewsController
   */
  class NewsController extends Controller
  {
+ 	/* Layouts changing
+	function __construct()
+	{
+		parent::__construct();
+		$this->view->layout = 'text'; // change layout for this controller
+		$this->view->param = ['render'=>'part']; // change render type for this controller
+	}*/
+
  	public function actionList()
  	{
 		try {
@@ -26,19 +35,25 @@ use models\News;
 		// $this->view->render('index.php',['id'=>$id,'newsList'=>$newsList]);
 		dump_r($newsList);
  	}
+
  	public function actionView($id,$category=false)
  	{
  		$newsList = array();
- 		$newsList = News::getNewsItemById($id);
+ 		$db = News::getDoctrine();
+ 		$newsList = News::getNewsItemById($id,$db);
+ 		$this->isExist($newsList);
  		$content['newsList']=$newsList;
  		echo $this->view->muRender('news/detail',$content);
  	}
+
  	public function actionIndex()
  	{
- 		$newsList = News::getNewsListArr();
+ 		$db = News::getDoctrine();
+ 		$newsList = News::getNewsListArr($db);
 		$content['title']='moyTitle';
 		$content['email']='email';
 		$content['newsList']=$newsList;
  		echo $this->view->muRender('news/index',$content);
  	}
+
  }

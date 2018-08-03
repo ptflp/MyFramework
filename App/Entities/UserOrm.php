@@ -1,28 +1,27 @@
 <?php
-namespace entities;
+
+namespace App\Entities;
 
 /**
- * @Entity
- * @Table(name="user")
+ * UserOrm
  */
-class User
+class UserOrm
 {
     /**
-     * @Id
-     * @GeneratedValue
-     * @Column(type="smallint")
+     * @var int
      */
     private $id;
 
     /**
-     * @Column(type="string", length=255, unique=true)
+     * @var string
      */
     private $email;
 
     /**
-     * @Column(type="string")
+     * @var string
      */
     private $password;
+
 
     /**
      * Get id.
@@ -39,7 +38,7 @@ class User
      *
      * @param string $email
      *
-     * @return User
+     * @return UserOrm
      */
     public function setEmail($email)
     {
@@ -63,7 +62,7 @@ class User
      *
      * @param string $password
      *
-     * @return User
+     * @return UserOrm
      */
     public function setPassword($password)
     {

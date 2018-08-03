@@ -1,11 +1,12 @@
 <?php
-namespace entities;
+
+namespace App\Entities;
 
 /**
  * @Entity
  * @Table(name="news")
  */
-class News
+class NewsOrm
 {
     /**
      * @Id

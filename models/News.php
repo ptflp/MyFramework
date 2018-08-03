@@ -1,20 +1,32 @@
 <?php
-namespace models;
-use res\Model as Model;
+
+namespace App\Models;
+
+use App\MVC\Model;
 use Predis\Client;
+
 /**
  * News model class
  */
 class News extends Model
 {
-	public static function getNewsItemById($id)
+	public $db;
+
+	public function __construct()
 	{
+		$this->$db = News::getDoctrine();
+	}
+	public static function getNewsItemById($id,$db=false)
+	{
+		$static = !(isset($this) && get_class($this) == __CLASS__);
+		if (!$static) {
+			$db = $this->db;
+		}
 		$id = intval ($id);
 		if ($id) {
-			$db = News::getDoctrine();
  			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
-	            ->from('entities\News', 'p')
+	            ->from('App\Entities\NewsOrm', 'p')
 	            ->where('p.id= :id')
 	            ->setParameter('id', $id)
 	            ->getQuery()
@@ -22,9 +34,13 @@ class News extends Model
 		}
 		return $result;
 	}
-	public static function getNewsList()
+
+	public static function getNewsList($db=false)
 	{
-		$db = News::getConnection();
+		$static = !(isset($this) && get_class($this) == __CLASS__);
+		if (!$static) {
+			$db = $this->db;
+		}
 		$newsList = array();
 		$result = $db->query('SELECT * from news;');
 		while ($row = $result->fetch()) {
@@ -37,8 +53,13 @@ class News extends Model
 		}
 		return $newsList;
 	}
-	public static function getNewsListArr()
+
+	public static function getNewsListArr($db=false)
 	{
+		$static = !(isset($this) && get_class($this) == __CLASS__);
+		if (!$static) {
+			$db = $this->db;
+		}
 		try {
 			$client = new Client([
 				    "scheme" => "tcp",
@@ -46,18 +67,18 @@ class News extends Model
 				    "port" => 6379
 			]);
 
+			$response = $client->get('newsList');
 		}
 		catch (Exception $e) {
 			die($e->getMessage());
 		}
-		$response = $client->get('newsList');
+		$response=false;
 		if ($response) {
 			$result=json_decode($response);
 		} else {
-			$db = News::getDoctrine();
-				$query=$db->createQueryBuilder();
+			$query=$db->createQueryBuilder();
 		    $result = $query->select('p')
-	            ->from('entities\News', 'p')
+	            ->from('App\Entities\NewsOrm', 'p')
 	            ->getQuery()
 	            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
 		 	$client->set('newsList', json_encode($result));
