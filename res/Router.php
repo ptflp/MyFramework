@@ -2,8 +2,6 @@
 
 namespace App\Resource;
 
-use App\Resource\Controller;
-
 /**
   * Class Router
   */
