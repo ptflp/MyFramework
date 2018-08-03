@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Resource\MVC;
+namespace App\MVC;
 
 /**
  * Controller

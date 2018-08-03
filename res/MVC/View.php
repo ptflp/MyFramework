@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Resource\MVC;
+namespace App\MVC;
 
 use Mustache_Engine;
 use Mustache_Loader_FilesystemLoader;

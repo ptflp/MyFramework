@@ -11,7 +11,8 @@
         "psr-4": {
             "App\\Models\\": "models/",
             "App\\Entities\\": "entities/",
-            "App\\Resource\\": "res/"
+            "App\\Resource\\": "res/",
+            "App\\MVC\\": "res/MVC"
         }
     }
 }

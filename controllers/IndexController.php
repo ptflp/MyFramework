@@ -1,6 +1,6 @@
 <?php
 
-use App\Resource\MVC\Controller;
+use App\MVC\Controller;
 
 /**
  * Controller
